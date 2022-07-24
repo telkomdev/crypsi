@@ -1,4 +1,4 @@
-name: crypto-util Node CI
+name: crypsi Node CI
 
 on:
   push:
