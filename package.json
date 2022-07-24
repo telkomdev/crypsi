@@ -1,13 +1,25 @@
 {
   "name": "crypsi",
   "version": "1.0.0",
-  "description": "",
+  "description": "Custom crypto utility that wraps the crypto node module to make life easier",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "telkomdev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/telkomdev/crypsi.git"
+  },
+  "keywords": [
+    "crypto",
+    "digest",
+    "hmac",
+    "rsa",
+    "digital signature",
+    "cipher"
+  ],
   "devDependencies": {
     "mocha": "^9.2.1"
   }
