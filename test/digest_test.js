@@ -1,7 +1,7 @@
 const assert = require('assert');
 const { digest } = require('../index');
 
-describe('Test Diget (Hashing Algorithm)', () => {
+describe('Test Digest (Hashing Algorithm)', () => {
     it('should equal to exptected when hashing with md5', () => {
         const expected = '60e1bc04fa194a343b50ce67f4afcff8';
 
