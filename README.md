@@ -196,18 +196,18 @@ Expected key len:
 - AES 192: key length should be 24 bytes
 - AES 256: key length should be 32 bytes
 
-Data encryption with AES 156 CBC
+Data encryption with `AES 256 CBC`
 ```javascript
 const { aesEncryption } = require('crypsi');
 
 const key = 'abc$#128djdyAgbjau&YAnmcbagryt5x';
 const data = 'hello world';
 
-// encrypt data with AES 156 CBC
+// encrypt data with AES 256 CBC
 const encryptedData = aesEncryption.encryptWithAes256Cbc(key, data);
 console.log(encryptedData);
 
-// decrypt data with AES 156 CBC with the same key
+// decrypt data with AES 256 CBC with the same key
 const decryptedData = aesEncryption.decryptWithAes256Cbc(key, encryptedData);
 console.log(decryptedData);
 ```
