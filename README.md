@@ -83,4 +83,131 @@ n3LQsISpln3R7g8riWFeWg==
 -----END PRIVATE KEY-----
 ```
 
+#### Example Digital Signature with RSA Private and Public Key
 
+```javascript
+const { rsa, rsaSign, keyUtil } = require('crypsi');
+const { Buffer } = require('buffer');
+const fs = require('fs');
+
+rsa.generateRSAkeyPair(keyUtil.KEY_SIZE_4KB, '').then(pairs => {
+    console.log(pairs.publicKey);
+    console.log(pairs.privateKey);
+
+    // data can be anything, from simple string or Buffer of file
+    const fileData = fs.readFileSync('./testdata/myfile.txt');
+
+    // sign with private key
+    const signature = rsaSign.signWithSha256(pairs.privateKey, Buffer.from(fileData));
+
+     // => for example: save signature to database
+
+    // verifying digital signature with public key
+    const signatureValid = rsaSign.verifyWithSha256(pairs.publicKey, signature, Buffer.from(fileData));
+    console.log(signatureValid);
+}).catch(err => {
+    console.log(err);
+});
+```
+
+#### Example Encryption with RSA Private and Public Key
+```javascript
+const { rsa, rsaEncryption, keyUtil } = require('crypsi');
+const fs = require('fs');
+
+rsa.generateRSAkeyPair(keyUtil.KEY_SIZE_4KB, '').then(pairs => {
+    console.log(pairs.publicKey);
+    console.log(pairs.privateKey);
+
+    // data can be anything, from simple string or Buffer of file
+    const fileData = fs.readFileSync('./testdata/myfile.txt');
+
+    // encrypt with public key
+    const encryptedData = rsaEncryption.encryptWithOaepSha256(pairs.publicKey, fileData);
+
+    // decrypt with private key
+    const decryptedData = rsaEncryption.decryptWithOaepSha256(pairs.privateKey, encryptedData);
+
+    console.log(decryptedData);
+}).catch(err => {
+    console.log(err);
+});
+```
+
+#### Example Generate Hash with common Digest Algorithm
+```javascript
+const { digest } = require('crypsi');
+
+const data = 'hello world';
+
+// MD5
+const generatedHashMd5 = digest.md5(data);
+console.log(generatedHashMd5);
+
+// SHA1
+const generatedHashSha1 = digest.sha1(data);
+console.log(generatedHashSha1);
+
+// SHA256
+const generatedHashSha256 = digest.sha256(data);
+console.log(generatedHashSha256);
+
+// SHA384
+const generatedHashSha384 = digest.sha384(data);
+console.log(generatedHashSha384);
+
+// SHA384
+const generatedHashSha512 = digest.sha512(data);
+console.log(generatedHashSha512);
+```
+
+#### Example Generate Hash with HMAC
+Keyed-Hash Message Authentication Code (HMAC) as defined in U.S. Federal Information Processing Standards Publication 198. An HMAC is a cryptographic hash that uses a key to sign a message (from Golang Documentation).
+```javascript
+const { hmac } = require('crypsi');
+
+const key = 'abc$#128djdyAgbjau&YAnmcbagryt5x';
+const data = 'hello world';
+
+// MD5
+const generatedHmacMd5 = hmac.md5(key, data);
+console.log(generatedHmacMd5);
+
+// SHA1
+const generatedHmacSha1 = hmac.sha1(key, data);
+console.log(generatedHmacSha1);
+
+// SHA256
+const generatedHmacSha256 = hmac.sha256(key, data);
+console.log(generatedHmacSha256);
+
+// SHA384
+const generatedHmacSha384 = hmac.sha384(key, data);
+console.log(generatedHmacSha384);
+
+// SHA384
+const generatedHmacSha512 = hmac.sha512(key, data);
+console.log(generatedHmacSha512);
+```
+
+#### Example Encryption with AES Algorithm
+Expected key len:
+- AES 128: key length should be 16 bytes
+- AES 192: key length should be 24 bytes
+- AES 256: key length should be 32 bytes
+
+Data encryption with AES 156 CBC
+```javascript
+const { aesEncryption } = require('crypsi');
+
+const key = 'abc$#128djdyAgbjau&YAnmcbagryt5x';
+const data = 'hello world';
+
+// encrypt data with AES 156 CBC
+const encryptedData = aesEncryption.encryptWithAes256Cbc(key, data);
+console.log(encryptedData);
+
+// decrypt data with AES 156 CBC with the same key
+const decryptedData = aesEncryption.decryptWithAes256Cbc(key, encryptedData);
+console.log(decryptedData);
+```
