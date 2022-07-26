@@ -5,10 +5,8 @@ const { rsa, rsaEncryption } = require('../index');
 
 describe('Test RSA Encryption', () => {
   it('should throw error if dat is not buffer', () => {
-    const privateKeyData = fs.readFileSync('./test/testdata/private.key');
     const publicKeyData = fs.readFileSync('./test/testdata/public.key');
 
-    const privateKey = rsa.loadPrivateKey(privateKeyData);
     const publicKey = rsa.loadPublicKey(publicKeyData);
 
     const expected = 'hello world';
