@@ -6,6 +6,26 @@ describe('Test AES CBC Encryption', () => {
   const key192 = 'abc$#128djdyAgbjau&YAnmc';
   const key256 = 'abc$#128djdyAgbjau&YAnmcbagryt5x';
 
+  it('should throw error if encrypted data not object or string', () => {
+    const expected = 1234567890;
+
+    const encryptedData = () => {
+      aesEncryption.encryptWithAes128Cbc(key128, expected);
+    };
+
+    assert.throws(encryptedData, Error);
+  });
+
+  it('should throw error if decrypted data not object or string', () => {
+    const expected = 1234567890;
+
+    const decryptedData = () => {
+      aesEncryption.decryptWithAes128Cbc(key128, expected);
+    };
+
+    assert.throws(decryptedData, Error);
+  });
+
   it('should equal data from encryption and decryption with Aes128Cbc', () => {
     const expected = 'eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjEyNzk3NDYwMDAsIm9hdXRoX3Rva2VuIjoiMjk1NjY2Njk1MDY0fDIuRXpwem5IRVhZWkJVZmhGQ2l4ZzYzUV9fLjM2MDAuMTI3OTc0NjAwMC0xMDAwMDA0ODMyNzI5MjN8LXJ6U1pnRVBJTktaYnJnX1VNUUNhRzlNdEY4LiIsInVzZXJfaWQiOiIxMDAwMDA0ODMyNzI5MjMifQ';
 
