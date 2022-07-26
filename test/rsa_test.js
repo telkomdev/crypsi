@@ -65,7 +65,7 @@ describe('Test Load RSA public key from file', () => {
         assert.notEqual(null, publicKey);
     });
 
-    it('should succeed loadPublicKeyFromBase64 and loadPublicKeyFromBase64', () => {
+    it('should succeed loadPublicKeyAsBase64 and loadPublicKeyFromBase64', () => {
         const publicKeyDataBase64 = fs.readFileSync('./test/testdata/public.key');
         const publicKeyBase64 = rsa.loadPublicKeyAsBase64(publicKeyDataBase64);
 

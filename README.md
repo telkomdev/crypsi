@@ -83,6 +83,65 @@ n3LQsISpln3R7g8riWFeWg==
 -----END PRIVATE KEY-----
 ```
 
+#### Example Loading RSA Private and Public Key
+```javascript
+const { rsa } = require('crypsi');
+const fs = require('fs');
+
+// loading RSA private key from file
+const privateKeyData = fs.readFileSync('./testdata/private.key');
+const privateKey = rsa.loadPrivateKey(privateKeyData);
+
+console.log(privateKey);
+
+// loading RSA public key from file
+const publicKeyData = fs.readFileSync('./testdata/public.key');
+const publicKey = rsa.loadPublicKey(publicKeyData);
+
+console.log(publicKey);
+```
+
+#### Example Loading RSA Private and Public Key as Base64 String
+```javascript
+const { rsa } = require('crypsi');
+const fs = require('fs');
+
+// loading RSA private key from file
+const privateKeyData = fs.readFileSync('./testdata/private.key');
+const privateKeyBase64 = rsa.loadPrivateKeyAsBase64(privateKeyData);
+
+console.log(privateKeyBase64);
+
+// loading RSA public key from file
+const publicKeyData = fs.readFileSync('./testdata/public.key');
+const publicKeyBase64 = rsa.loadPublicKeyAsBase64(publicKeyData);
+
+console.log(publicKeyBase64);
+```
+
+#### Example Loading RSA Private and Public Key as Base64 String and load back as RSA private and public key
+```javascript
+const { rsa } = require('crypsi');
+const fs = require('fs');
+
+// loading RSA private key from file
+const privateKeyData = fs.readFileSync('./testdata/private.key');
+const privateKeyBase64 = rsa.loadPrivateKeyAsBase64(privateKeyData);
+
+// for example: save privateKeyBase64 to database
+const privateKey = rsa.loadPrivateKeyFromBase64(privateKeyBase64);
+console.log(privateKey);
+
+// loading RSA public key from file
+const publicKeyData = fs.readFileSync('./testdata/public.key');
+const publicKeyBase64 = rsa.loadPublicKeyAsBase64(publicKeyData);
+
+// for example: save publicKeyBase64 to database
+
+const publicKey = rsa.loadPublicKeyFromBase64(publicKeyBase64);
+console.log(publicKey);
+```
+
 #### Example Digital Signature with RSA Private and Public Key
 
 ```javascript
