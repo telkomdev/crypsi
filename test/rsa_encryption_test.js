@@ -4,84 +4,83 @@ const fs = require('fs');
 const { rsa, rsaEncryption } = require('../index');
 
 describe('Test RSA Encryption', () => {
-    it('should equal data from encryption and decryption with OaepSha256', () => {
-        const privateKeyData = fs.readFileSync('./test/testdata/private.key');
-        const publicKeyData = fs.readFileSync('./test/testdata/public.key');
+  it('should equal data from encryption and decryption with OaepSha256', () => {
+    const privateKeyData = fs.readFileSync('./test/testdata/private.key');
+    const publicKeyData = fs.readFileSync('./test/testdata/public.key');
 
-        const privateKey = rsa.loadPrivateKey(privateKeyData);
-        const publicKey = rsa.loadPublicKey(publicKeyData);
-        
-        const expected = "hello world";
-        const encryptedData = rsaEncryption.encryptWithOaepSha256(publicKey, Buffer.from(expected));
-        
-        const decryptedData = rsaEncryption.decryptWithOaepSha256(privateKey, encryptedData);
+    const privateKey = rsa.loadPrivateKey(privateKeyData);
+    const publicKey = rsa.loadPublicKey(publicKeyData);
 
-        const bufferEqual = Buffer.compare(Buffer.from(expected), decryptedData) == 0;
-        assert.equal(true, bufferEqual);
-    });
+    const expected = 'hello world';
+    const encryptedData = rsaEncryption.encryptWithOaepSha256(publicKey, Buffer.from(expected));
 
-    it('should equal data from encryption and decryption with OaepMd5', () => {
-        const privateKeyData = fs.readFileSync('./test/testdata/private.key');
-        const publicKeyData = fs.readFileSync('./test/testdata/public.key');
+    const decryptedData = rsaEncryption.decryptWithOaepSha256(privateKey, encryptedData);
 
-        const privateKey = rsa.loadPrivateKey(privateKeyData);
-        const publicKey = rsa.loadPublicKey(publicKeyData);
-        
-        const expected = "hello world";
-        const encryptedData = rsaEncryption.encryptWithOaepMd5(publicKey, Buffer.from(expected));
-        
-        const decryptedData = rsaEncryption.decryptWithOaepMd5(privateKey, encryptedData);
+    const bufferEqual = Buffer.compare(Buffer.from(expected), decryptedData) === 0;
+    assert.equal(true, bufferEqual);
+  });
 
-        const bufferEqual = Buffer.compare(Buffer.from(expected), decryptedData) == 0;
-        assert.equal(true, bufferEqual);
-    });
+  it('should equal data from encryption and decryption with OaepMd5', () => {
+    const privateKeyData = fs.readFileSync('./test/testdata/private.key');
+    const publicKeyData = fs.readFileSync('./test/testdata/public.key');
 
-    it('should equal data from encryption and decryption with OaepSha1', () => {
-        const privateKeyData = fs.readFileSync('./test/testdata/private.key');
-        const publicKeyData = fs.readFileSync('./test/testdata/public.key');
+    const privateKey = rsa.loadPrivateKey(privateKeyData);
+    const publicKey = rsa.loadPublicKey(publicKeyData);
 
-        const privateKey = rsa.loadPrivateKey(privateKeyData);
-        const publicKey = rsa.loadPublicKey(publicKeyData);
-        
-        const expected = "hello world";
-        const encryptedData = rsaEncryption.encryptWithOaepSha1(publicKey, Buffer.from(expected));
-        
-        const decryptedData = rsaEncryption.decryptWithOaepSha1(privateKey, encryptedData);
+    const expected = 'hello world';
+    const encryptedData = rsaEncryption.encryptWithOaepMd5(publicKey, Buffer.from(expected));
 
-        const bufferEqual = Buffer.compare(Buffer.from(expected), decryptedData) == 0;
-        assert.equal(true, bufferEqual);
-    });
+    const decryptedData = rsaEncryption.decryptWithOaepMd5(privateKey, encryptedData);
 
-    it('should equal data from encryption and decryption with OaepSha384', () => {
-        const privateKeyData = fs.readFileSync('./test/testdata/private.key');
-        const publicKeyData = fs.readFileSync('./test/testdata/public.key');
+    const bufferEqual = Buffer.compare(Buffer.from(expected), decryptedData) === 0;
+    assert.equal(true, bufferEqual);
+  });
 
-        const privateKey = rsa.loadPrivateKey(privateKeyData);
-        const publicKey = rsa.loadPublicKey(publicKeyData);
-        
-        const expected = "hello world";
-        const encryptedData = rsaEncryption.encryptWithOaepSha384(publicKey, Buffer.from(expected));
-        
-        const decryptedData = rsaEncryption.decryptWithOaepSha384(privateKey, encryptedData);
+  it('should equal data from encryption and decryption with OaepSha1', () => {
+    const privateKeyData = fs.readFileSync('./test/testdata/private.key');
+    const publicKeyData = fs.readFileSync('./test/testdata/public.key');
 
-        const bufferEqual = Buffer.compare(Buffer.from(expected), decryptedData) == 0;
-        assert.equal(true, bufferEqual);
-    });
+    const privateKey = rsa.loadPrivateKey(privateKeyData);
+    const publicKey = rsa.loadPublicKey(publicKeyData);
 
-    it('should equal data from encryption and decryption with OaepSha512', () => {
-        const privateKeyData = fs.readFileSync('./test/testdata/private.key');
-        const publicKeyData = fs.readFileSync('./test/testdata/public.key');
+    const expected = 'hello world';
+    const encryptedData = rsaEncryption.encryptWithOaepSha1(publicKey, Buffer.from(expected));
 
-        const privateKey = rsa.loadPrivateKey(privateKeyData);
-        const publicKey = rsa.loadPublicKey(publicKeyData);
-        
-        const expected = "hello world";
-        const encryptedData = rsaEncryption.encryptWithOaepSha512(publicKey, Buffer.from(expected));
-        
-        const decryptedData = rsaEncryption.decryptWithOaepSha512(privateKey, encryptedData);
+    const decryptedData = rsaEncryption.decryptWithOaepSha1(privateKey, encryptedData);
 
-        const bufferEqual = Buffer.compare(Buffer.from(expected), decryptedData) == 0;
-        assert.equal(true, bufferEqual);
-    });
+    const bufferEqual = Buffer.compare(Buffer.from(expected), decryptedData) === 0;
+    assert.equal(true, bufferEqual);
+  });
 
+  it('should equal data from encryption and decryption with OaepSha384', () => {
+    const privateKeyData = fs.readFileSync('./test/testdata/private.key');
+    const publicKeyData = fs.readFileSync('./test/testdata/public.key');
+
+    const privateKey = rsa.loadPrivateKey(privateKeyData);
+    const publicKey = rsa.loadPublicKey(publicKeyData);
+
+    const expected = 'hello world';
+    const encryptedData = rsaEncryption.encryptWithOaepSha384(publicKey, Buffer.from(expected));
+
+    const decryptedData = rsaEncryption.decryptWithOaepSha384(privateKey, encryptedData);
+
+    const bufferEqual = Buffer.compare(Buffer.from(expected), decryptedData) === 0;
+    assert.equal(true, bufferEqual);
+  });
+
+  it('should equal data from encryption and decryption with OaepSha512', () => {
+    const privateKeyData = fs.readFileSync('./test/testdata/private.key');
+    const publicKeyData = fs.readFileSync('./test/testdata/public.key');
+
+    const privateKey = rsa.loadPrivateKey(privateKeyData);
+    const publicKey = rsa.loadPublicKey(publicKeyData);
+
+    const expected = 'hello world';
+    const encryptedData = rsaEncryption.encryptWithOaepSha512(publicKey, Buffer.from(expected));
+
+    const decryptedData = rsaEncryption.decryptWithOaepSha512(privateKey, encryptedData);
+
+    const bufferEqual = Buffer.compare(Buffer.from(expected), decryptedData) === 0;
+    assert.equal(true, bufferEqual);
+  });
 });
