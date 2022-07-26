@@ -3,6 +3,7 @@
 Custom crypto utility that wraps the `crypto` node module to make life easier
 
 [![crypsi Node CI](https://github.com/telkomdev/crypsi/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/telkomdev/crypsi/actions/workflows/ci.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/1ad9128a161d606b4503/maintainability)](https://codeclimate.com/github/lutfailham96/crypsi/maintainability)
 
 ### Install
 ```shell
