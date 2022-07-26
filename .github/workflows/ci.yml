@@ -26,6 +26,4 @@ jobs:
       - name: Install dep
         run: yarn
       - name: Run test
-        run: yarn test:cover
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        run: yarn test
