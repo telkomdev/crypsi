@@ -4,6 +4,21 @@ const fs = require('fs');
 const { rsa, rsaEncryption } = require('../index');
 
 describe('Test RSA Encryption', () => {
+  it('should throw error if dat is not buffer', () => {
+    const privateKeyData = fs.readFileSync('./test/testdata/private.key');
+    const publicKeyData = fs.readFileSync('./test/testdata/public.key');
+
+    const privateKey = rsa.loadPrivateKey(privateKeyData);
+    const publicKey = rsa.loadPublicKey(publicKeyData);
+
+    const expected = 'hello world';
+    const encryptedData = () => {
+      rsaEncryption.encryptWithOaepSha256(publicKey, expected);
+    };
+
+    assert.throws(encryptedData, Error);
+  });
+
   it('should equal data from encryption and decryption with OaepSha256', () => {
     const privateKeyData = fs.readFileSync('./test/testdata/private.key');
     const publicKeyData = fs.readFileSync('./test/testdata/public.key');
