@@ -11,6 +11,13 @@ describe('Test Generate RSA private and public key', () => {
       assert.equal(err, null);
     });
   });
+  it('should return non null private and public key using aes-256-cbc', () => {
+    rsa.generateRSAKeyPair(keyUtil.KEY_SIZE_4KB, '', true).then((pairs) => {
+      assert.notEqual(pairs, null);
+    }).catch((err) => {
+      assert.equal(err, null);
+    });
+  });
 });
 
 describe('Test Load RSA private key from file', () => {
