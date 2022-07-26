@@ -3,6 +3,7 @@ const { hmac } = require('../index');
 
 describe('Test Keyed-Hash Message Authentication Code (HMAC) ', () => {
   const key = 'abc$#128djdyAgbjau&YAnmcbagryt5x';
+  const invalidKey = '12345';
 
   it('should equal to exptected when Hmac with md5', () => {
     const expected = 'd213b2e973c1a5d704255518af6d073c';
@@ -42,5 +43,15 @@ describe('Test Keyed-Hash Message Authentication Code (HMAC) ', () => {
     const data = 'wuriyanto';
     const actual = hmac.sha512(key, data);
     assert.equal(actual, expected);
+  });
+
+  it('should throw error if key length is not enough', () => {
+    const expected = '0084af8c8d831581b30f3ef2a250355bb04f2b2ca632d656ab8dce2b34692e5238ed19f7638070a115196dd928dfff3717dddf9d072ae9c26716c8faa11a25f8';
+
+    const data = 'wuriyanto';
+    const actual = () => {
+      hmac.sha512(invalidKey, data)
+    };
+    assert.throws(actual, Error);
   });
 });
