@@ -215,7 +215,7 @@ console.log(generatedHashSha256);
 const generatedHashSha384 = digest.sha384(data);
 console.log(generatedHashSha384);
 
-// SHA384
+// SHA512
 const generatedHashSha512 = digest.sha512(data);
 console.log(generatedHashSha512);
 ```
@@ -244,7 +244,7 @@ console.log(generatedHmacSha256);
 const generatedHmacSha384 = hmac.sha384(key, data);
 console.log(generatedHmacSha384);
 
-// SHA384
+// SHA512
 const generatedHmacSha512 = hmac.sha512(key, data);
 console.log(generatedHmacSha512);
 ```
