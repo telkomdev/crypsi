@@ -275,7 +275,7 @@ File encryption with `AES 256 CBC`
 
 ```javascript
 const fs = require('fs');
-const { aesEncryption } = require('./index');
+const { aesEncryption } = require('crypsi');
 
 const key128 = 'abc$#128djdyAgbj';
 
