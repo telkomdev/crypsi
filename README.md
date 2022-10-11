@@ -270,3 +270,32 @@ console.log(encryptedData);
 const decryptedData = aesEncryption.decryptWithAes256Cbc(key, encryptedData);
 console.log(decryptedData);
 ```
+
+File encryption with `AES 256 CBC`
+
+```javascript
+const fs = require('fs');
+const { aesEncryption } = require('./index');
+
+const key128 = 'abc$#128djdyAgbj';
+
+fs.readFile('myfile.jpg', null, (err, data) => {
+    if (err) {
+        console.log(err);
+    } else {
+        
+        const encrypted = aesEncryption.encryptWithAes128Cbc(key128, data);
+        // store encrypted data and its nonce for example to the database or to the file system
+        console.log(encrypted.encrypted);
+
+        const decryptedData = aesEncryption.decryptWithAes128Cbc(key128, encrypted);
+        
+        // write decrypted data back to the file
+        fs.writeFile('out.jpg', decryptedData, 'binary', (err) => {
+            if (err) {
+                console.log('error... ', err);
+            }
+        });
+    }
+});
+```
