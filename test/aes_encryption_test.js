@@ -1,3 +1,4 @@
+const fs = require('fs');
 const assert = require('assert');
 const { aesEncryption } = require('../index');
 
@@ -54,7 +55,24 @@ describe('Test AES CBC Encryption', () => {
     const decryptedData = aesEncryption.decryptWithAes256Cbc(key256, encryptedData);
 
     assert.equal(expected, decryptedData);
+
   });
+
+  it('should equal file from encryption and decryption with Aes256Cbc', () => {
+    fs.readFile('./test/testdata/google.png', null, (err, data) => {
+      if (err) {
+        throw err;
+      }
+
+      const encryptedData = aesEncryption.encryptWithAes256Cbc(key256, data);
+
+      const decryptedData = aesEncryption.decryptWithAes256Cbc(key256, encryptedData);
+
+      assert.equal(data.length, decryptedData.length);
+    });
+  });
+
+
 });
 
 describe('Test AES GCM Encryption', () => {
@@ -90,6 +108,20 @@ describe('Test AES GCM Encryption', () => {
     const decryptedData = aesEncryption.decryptWithAes256Gcm(key256, encryptedData);
 
     assert.equal(expected, decryptedData);
+  });
+
+  it('should equal file from encryption and decryption with Aes256Gcm', () => {
+    fs.readFile('./test/testdata/google.png', null, (err, data) => {
+      if (err) {
+        throw err;
+      }
+
+      const encryptedData = aesEncryption.encryptWithAes256Gcm(key256, data);
+
+      const decryptedData = aesEncryption.decryptWithAes256Gcm(key256, encryptedData);
+
+      assert.equal(data.length, decryptedData.length);
+    });
   });
 });
 
@@ -127,6 +159,21 @@ describe('Test AES CCM Encryption', () => {
 
     assert.equal(expected, decryptedData);
   });
+
+  it('should equal file from encryption and decryption with Aes256Ccm', () => {
+    fs.readFile('./test/testdata/google.png', null, (err, data) => {
+      if (err) {
+        throw err;
+      }
+
+      const encryptedData = aesEncryption.encryptWithAes256Ccm(key256, data);
+
+      const decryptedData = aesEncryption.decryptWithAes256Ccm(key256, encryptedData);
+
+      assert.equal(data.length, decryptedData.length);
+    });
+  });
+
 });
 
 describe('Test AES OCB Encryption', () => {
@@ -163,4 +210,19 @@ describe('Test AES OCB Encryption', () => {
 
     assert.equal(expected, decryptedData);
   });
+
+  it('should equal file from encryption and decryption with Aes256Ocb', () => {
+    fs.readFile('./test/testdata/google.png', null, (err, data) => {
+      if (err) {
+        throw err;
+      }
+
+      const encryptedData = aesEncryption.encryptWithAes256Ocb(key256, data);
+
+      const decryptedData = aesEncryption.decryptWithAes256Ocb(key256, encryptedData);
+
+      assert.equal(data.length, decryptedData.length);
+    });
+  });
+
 });
