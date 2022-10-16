@@ -11,6 +11,24 @@ describe('Test Generate RSA private and public key', () => {
       assert.equal(err, null);
     });
   });
+
+  it('should return non null private and public key as base64 format', () => {
+    rsa.generateRSAKeyPair(keyUtil.KEY_SIZE_4KB, '').then((pairs) => {
+
+      const privateKeyBase64 = rsa.loadPrivateKeyAsBase64(pairs.privateKey);
+      const publicKeyBase64 = rsa.loadPublicKeyAsBase64(pairs.publicKey);
+      
+      console.log(rsa.loadPrivateKeyFromBase64(privateKeyBase64));
+      console.log();
+      console.log(rsa.loadPublicKeyFromBase64(publicKeyBase64));
+
+      assert.notEqual(privateKeyBase64, null);
+      assert.notEqual(publicKeyBase64, null);
+    }).catch((err) => {
+      assert.equal(err, null);
+    });
+  });
+
   it('should return non null private and public key using aes-256-cbc', () => {
     rsa.generateRSAKeyPair(keyUtil.KEY_SIZE_4KB, '', true).then((pairs) => {
       assert.notEqual(pairs, null);
