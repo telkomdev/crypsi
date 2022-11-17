@@ -299,3 +299,21 @@ fs.readFile('myfile.jpg', null, (err, data) => {
     }
 });
 ```
+
+File Decryption with `AES 256 OCB`
+```javascript
+const fs = require('fs');
+const { aesEncryption } = require('crypsi');
+
+const key256 = 'abc$#128djdyAgbjau&YAnmcbagryt5x';
+
+fs.readFile('./test/testdata/out.bin', null, (err, data) => {
+    if (err) {
+      throw err;
+    }
+
+    const decryptedData = aesEncryption.decryptWithAes256Ocb(key256, Buffer.from(data.toString(), 'hex'));
+
+    fs.writeFileSync('out.png', decryptedData);
+  });
+```
