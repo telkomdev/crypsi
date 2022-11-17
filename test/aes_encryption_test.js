@@ -34,7 +34,7 @@ describe('Test AES CBC Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes128Cbc(key128, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
   });
 
   it('should equal data from encryption and decryption with Aes192Cbc', () => {
@@ -44,7 +44,7 @@ describe('Test AES CBC Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes192Cbc(key192, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
   });
 
   it('should equal data from encryption and decryption with Aes256Cbc', () => {
@@ -54,7 +54,7 @@ describe('Test AES CBC Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes256Cbc(key256, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
 
   });
 
@@ -87,7 +87,7 @@ describe('Test AES GCM Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes128Gcm(key128, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
   });
 
   it('should equal data from encryption and decryption with Aes192Gcm', () => {
@@ -97,7 +97,7 @@ describe('Test AES GCM Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes192Gcm(key192, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
   });
 
   it('should equal data from encryption and decryption with Aes256Gcm', () => {
@@ -107,7 +107,7 @@ describe('Test AES GCM Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes256Gcm(key256, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
   });
 
   it('should equal file from encryption and decryption with Aes256Gcm', () => {
@@ -137,7 +137,7 @@ describe('Test AES CCM Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes128Ccm(key128, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
   });
 
   it('should equal data from encryption and decryption with Aes192Ccm', () => {
@@ -147,7 +147,7 @@ describe('Test AES CCM Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes192Ccm(key192, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
   });
 
   it('should equal data from encryption and decryption with Aes256Ccm', () => {
@@ -157,7 +157,7 @@ describe('Test AES CCM Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes256Ccm(key256, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
   });
 
   it('should equal file from encryption and decryption with Aes256Ccm', () => {
@@ -188,7 +188,7 @@ describe('Test AES OCB Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes128Ocb(key128, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
   });
 
   it('should equal data from encryption and decryption with Aes192Ocb', () => {
@@ -198,7 +198,7 @@ describe('Test AES OCB Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes192Ocb(key192, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
   });
 
   it('should equal data from encryption and decryption with Aes256Ocb', () => {
@@ -208,7 +208,7 @@ describe('Test AES OCB Encryption', () => {
 
     const decryptedData = aesEncryption.decryptWithAes256Ocb(key256, encryptedData);
 
-    assert.equal(expected, decryptedData);
+    assert.equal(expected, decryptedData.toString());
   });
 
   it('should equal file from encryption and decryption with Aes256Ocb', () => {
@@ -222,6 +222,24 @@ describe('Test AES OCB Encryption', () => {
       const decryptedData = aesEncryption.decryptWithAes256Ocb(key256, encryptedData);
 
       assert.equal(data.length, decryptedData.length);
+    });
+  });
+
+  it('should equal file from actual and decrypted with Aes256Ocb', () => {
+    fs.readFile('./test/testdata/encrypted_file.bin', null, (err, decryptedDataBuf) => {
+      if (err) {
+        throw err;
+      }
+
+      const decryptedData = aesEncryption.decryptWithAes256Ocb(key256, Buffer.from(decryptedDataBuf.toString(), 'hex'));
+
+      fs.readFile('./test/testdata/google.png', null, (err, data) => {
+        if (err) {
+          throw err;
+        }
+        
+        assert.equal(data.length, decryptedData.length);
+      });
     });
   });
 

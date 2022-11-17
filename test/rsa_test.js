@@ -17,10 +17,6 @@ describe('Test Generate RSA private and public key', () => {
 
       const privateKeyBase64 = rsa.loadPrivateKeyAsBase64(pairs.privateKey);
       const publicKeyBase64 = rsa.loadPublicKeyAsBase64(pairs.publicKey);
-      
-      console.log(rsa.loadPrivateKeyFromBase64(privateKeyBase64));
-      console.log();
-      console.log(rsa.loadPublicKeyFromBase64(publicKeyBase64));
 
       assert.notEqual(privateKeyBase64, null);
       assert.notEqual(publicKeyBase64, null);
