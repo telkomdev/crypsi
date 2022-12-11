@@ -157,12 +157,12 @@ rsa.generateRSAkeyPair(keyUtil.KEY_SIZE_4KB, '').then(pairs => {
     const fileData = fs.readFileSync('./testdata/myfile.txt');
 
     // sign with private key
-    const signature = rsaSign.signWithSha256(pairs.privateKey, Buffer.from(fileData));
+    const signature = rsaSign.signWithPSSSha256(pairs.privateKey, Buffer.from(fileData));
 
      // => for example: save signature to database
 
     // verifying digital signature with public key
-    const signatureValid = rsaSign.verifyWithSha256(pairs.publicKey, signature, Buffer.from(fileData));
+    const signatureValid = rsaSign.verifyWithPSSSha256(pairs.publicKey, signature, Buffer.from(fileData));
     console.log(signatureValid);
 }).catch(err => {
     console.log(err);
