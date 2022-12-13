@@ -9,10 +9,21 @@ Custom crypto utility that wraps the `crypto` node module to make life easier
 $ npm i crypsi
 ```
 
+### Crypsi is compatible with each other with the following libraries
+- Golang https://github.com/telkomdev/go-crypsi
+- Python https://github.com/telkomdev/pycrypsi
+
 ### Usage
 
 Just open the `unit test` folder, all available there.
 
+### Features
+- Asymmetric encryption with RSA
+- Generate RSA private and public key
+- Digital Signature with RSA private and public key using PSS
+- Symmetric encryption with AES
+- Message authentication code with HMAC
+- Generate Hash with Common DIGEST Algorithm
 
 #### Example Generate RSA Private and Public Key
 
