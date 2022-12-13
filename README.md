@@ -20,9 +20,14 @@ Just open the `unit test` folder, all available there.
 const { rsa, keyUtil } = require('crypsi');
 const fs = require('fs');
 
-rsa.generateRSAkeyPair(keyUtil.KEY_SIZE_4KB, '').then(pairs => {
+rsa.generateRSAKeyPair(keyUtil.KEY_SIZE_4KB, '').then(pairs => {
     console.log(pairs.publicKey);
     console.log(pairs.privateKey);
+
+    console.log('\n');
+    console.log(rsa.loadPrivateKeyAsBase64(pairs.privateKey));
+    console.log('\n');
+    console.log(rsa.loadPublicKeyAsBase64(pairs.publicKey));
 
     const publicKeyWriter = fs.createWriteStream('public.key');
     publicKeyWriter.write(pairs.publicKey);
@@ -149,7 +154,7 @@ const { rsa, rsaSign, keyUtil } = require('crypsi');
 const { Buffer } = require('buffer');
 const fs = require('fs');
 
-rsa.generateRSAkeyPair(keyUtil.KEY_SIZE_4KB, '').then(pairs => {
+rsa.generateRSAKeyPair(keyUtil.KEY_SIZE_4KB, '').then(pairs => {
     console.log(pairs.publicKey);
     console.log(pairs.privateKey);
 
@@ -174,7 +179,7 @@ rsa.generateRSAkeyPair(keyUtil.KEY_SIZE_4KB, '').then(pairs => {
 const { rsa, rsaEncryption, keyUtil } = require('crypsi');
 const fs = require('fs');
 
-rsa.generateRSAkeyPair(keyUtil.KEY_SIZE_4KB, '').then(pairs => {
+rsa.generateRSAKeyPair(keyUtil.KEY_SIZE_4KB, '').then(pairs => {
     console.log(pairs.publicKey);
     console.log(pairs.privateKey);
 
