@@ -1,9 +1,11 @@
 {
   "name": "crypsi",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Custom crypto utility that wraps the crypto node module to make life easier",
   "main": "index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build:types": "npx tsc",
     "test": "./node_modules/.bin/mocha",
     "test:cover": "./node_modules/.bin/nyc --reporter=cobertura --reporter=text-summary ./node_modules/.bin/mocha"
   },
@@ -23,6 +25,7 @@
   ],
   "devDependencies": {
     "mocha": "^9.2.1",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "typescript": "^4.9.4"
   }
 }
