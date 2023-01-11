@@ -1,6 +1,6 @@
 {
   "name": "crypsi",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Custom crypto utility that wraps the crypto node module to make life easier",
   "main": "index.js",
   "types": "dist/index.d.ts",
