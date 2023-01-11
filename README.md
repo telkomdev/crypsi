@@ -27,6 +27,7 @@ Just open the `unit test` folder, all available there.
 
 #### Example Generate RSA Private and Public Key
 
+##### Javascript
 ```javascript
 const { rsa, keyUtil } = require('crypsi');
 const fs = require('fs');
@@ -53,6 +54,26 @@ rsa.generateRSAKeyPair(keyUtil.KEY_SIZE_4KB, '').then(pairs => {
 });
 ```
 
+##### Typescript
+```javascript
+import { digest, rsa, rsaSign, keyUtil } from 'crypsi';
+import fs from 'fs';
+
+async function generate() {
+    const pairs = await rsa.generateRSAKeyPair(keyUtil.KEY_SIZE_2KB);
+
+    const publicKeyWriter = fs.createWriteStream('public.key');
+    publicKeyWriter.write(pairs.publicKey);
+    
+    const privateKeyWriter = fs.createWriteStream('private.key');
+    privateKeyWriter.write(pairs.privateKey);
+
+    publicKeyWriter.close();
+    privateKeyWriter.close();
+}
+
+generate();
+```
 Result RSA Public Key
 ```
 -----BEGIN PUBLIC KEY-----
