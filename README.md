@@ -12,6 +12,8 @@ $ npm i crypsi
 ### Crypsi is compatible with each other with the following libraries
 - Golang https://github.com/telkomdev/go-crypsi
 - Python https://github.com/telkomdev/pycrypsi
+- C# (.NET) https://github.com/telkomdev/NetCrypsi
+- Javascript (React and Browser) https://github.com/telkomdev/crypsi.js
 
 ### Usage
 
