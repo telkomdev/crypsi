@@ -13,6 +13,7 @@ $ npm i crypsi
 - Golang https://github.com/telkomdev/go-crypsi
 - Python https://github.com/telkomdev/pycrypsi
 - C# (.NET) https://github.com/telkomdev/NetCrypsi
+- Java/JVM https://github.com/telkomdev/jcrypsi
 - Javascript (React and Browser) https://github.com/telkomdev/crypsi.js
 
 ### Usage
