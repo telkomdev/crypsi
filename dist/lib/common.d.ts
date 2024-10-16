@@ -1,12 +1,9 @@
 /**
- * Check if input is valid buffer
- * @param buffer {Buffer}
- * @return {void | Error}
+ * @param {string | Buffer} buffer
  */
-export function checkBuffer(buffer: Buffer): void | Error;
+export function checkBuffer(buffer: string | Buffer): void;
 /**
- * Convert buffer input to string
- * @param buffer {string | Buffer}
- * @return {string}
+ * @param {string | Buffer} buffer
+ * @returns {string}
  */
 export function bufferToString(buffer: string | Buffer): string;
